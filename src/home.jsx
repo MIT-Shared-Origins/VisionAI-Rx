@@ -1,11 +1,13 @@
 import React from 'react'
 import { Button } from './components/ui/button'
+import Header from './components/Header'
 
 function Home() {
   return (
     <div>
-      <Button>Click me to Subscribe</Button>
-      dgaskhgdhaksg
+      {/* Header */}
+      <Header/>
+      
     </div>
   )
 }
