@@ -65,7 +65,7 @@ function Hero() {
     
         const targetImage = UID + ".png";
         const response = await fetch(
-          "https://31gv9av7oe.execute-api.us-west-1.amazonaws.com/Production/ocr",
+          "https://feeb6yrl7e.execute-api.ap-southeast-2.amazonaws.com/Production/ocr",
           {
             method: "POST",
             headers: {
