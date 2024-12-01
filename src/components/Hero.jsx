@@ -98,8 +98,34 @@ function Hero() {
           
 
           {/* Drag and Drop Area */}
-          <div className="flex justify-center items-center min-h-screen bg-gray-100">
-          <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+          <div>
+          <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center">
+          {state.preview ? (
+              <img
+                src={state.preview}
+                alt="Preview"
+                className="w-full h-40 object-cover rounded-md"
+              />
+            ) : (
+              <>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-12 h-12 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16l4-4m0 0l4 4m-4-4v12"
+                  />
+                </svg>
+                <p className="text-sm text-blue-500 mt-2">Or Drag It Here</p>
+              </>
+            )}
+          
             <FileBase64
               multiple={true}
               onDone={(files) => getFiles(files)}

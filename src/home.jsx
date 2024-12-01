@@ -10,8 +10,8 @@ function Home() {
       {/* Header */}
       <Header/>
       {/* Hero */}
-      {/* <Hero/> */}
-      <HeroSection/>
+      <Hero/>
+      {/* <HeroSection/> */}
     </div>
   )
 }
