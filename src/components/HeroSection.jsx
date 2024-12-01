@@ -6,6 +6,7 @@ function Hero() {
     confirmation: "",
     isLoading: "",
     files: "",
+    preview: null, // 增加预览功能
     Invoice: "",
     Amount: "",
     InvoiceDate: "",
@@ -35,6 +36,7 @@ function Hero() {
       ...prevState,
       isLoading: "Extracting data",
       files: files,
+      preview: files[0].base64, // 设置预览图片
     }));
 
     const UID = Math.round(1 + Math.random() * (1000000 - 1));
@@ -72,7 +74,7 @@ function Hero() {
 
     setState((prevState) => ({
       ...prevState,
-      confirmation: "Process completed successfully",
+      confirmation: "",
     }));
 
     const OCRBody = await response.json();
@@ -93,14 +95,12 @@ function Hero() {
       <div className="w-full max-w-2xl p-6 bg-white rounded-lg shadow-lg">
         <form onSubmit={handleSubmit} className="space-y-6">
           <h3 className="text-red-500 text-lg">{processing}</h3>
-          <h6 className="text-gray-700 font-medium">Upload Invoice</h6>
+          <h6 className="text-gray-700 font-medium">Upload Medicine</h6>
           <p className="text-sm text-gray-500">PNG, JPG</p>
-          
 
-          {/* Drag and Drop Area */}
-          <div>
-          <div className="relative border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center">
-          {state.preview ? (
+          {/* File Upload Section with Preview */}
+          <div className="form-group relative border-2 border-dashed border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center">
+            {state.preview ? (
               <img
                 src={state.preview}
                 alt="Preview"
@@ -125,17 +125,16 @@ function Hero() {
                 <p className="text-sm text-blue-500 mt-2">Or Drag It Here</p>
               </>
             )}
-          
             <FileBase64
               multiple={true}
               onDone={(files) => getFiles(files)}
-              className="mt-4"
+              className="absolute inset-0 opacity-0 cursor-pointer"
             />
           </div>
 
           <div>
             <label htmlFor="Invoice" className="block text-gray-700">
-              Invoice
+              Medicine Name 
             </label>
             <input
               type="text"
@@ -147,13 +146,10 @@ function Hero() {
               className="w-full p-2 mt-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
-          
-          </div>
-
 
           <div>
             <label htmlFor="Amount" className="block text-gray-700">
-              Amount ($)
+              Volume ($)
             </label>
             <input
               type="text"
@@ -168,7 +164,7 @@ function Hero() {
 
           <div>
             <label htmlFor="InvoiceDate" className="block text-gray-700">
-              Date
+              Number of Capsules
             </label>
             <input
               type="text"
@@ -183,7 +179,7 @@ function Hero() {
 
           <div>
             <label htmlFor="Vendor" className="block text-gray-700">
-              Vendor
+              Other Information
             </label>
             <input
               type="text"
