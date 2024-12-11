@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import axios from '../axios'
 function EventForm() {
     const [surgeryName, setSurgeryName] = useState('');
-    const [doctorName, setDoctorName] = useState('');
+    const [organizerName, setOrganizerName] = useState('');
     const [patientName, setPatientName] = useState('');
     const [eventId, setEventId] = useState(null);
 
@@ -12,7 +12,7 @@ function EventForm() {
         try {
             const response = await axios.post('/api/create-events', {
                 surgeryName,
-                doctorName,
+                organizerName,
                 patientName
             });
             
@@ -21,7 +21,7 @@ function EventForm() {
             
             // 可选：重置表单
             setSurgeryName('');
-            setDoctorName('');
+            setOrganizerName('');
             setPatientName('');
         } catch (error) {
             console.error('提交事件失败:', error);
@@ -41,8 +41,8 @@ function EventForm() {
                 <input 
                     type="text"
                     placeholder="医生名称"
-                    value={doctorName}
-                    onChange={(e) => setDoctorName(e.target.value)}
+                    value={organizerName}
+                    onChange={(e) => setOrganizerName(e.target.value)}
                     required
                 />
                 <input 
